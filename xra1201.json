@@ -1,0 +1,24 @@
+{
+	"type": "Embedded Library",
+	"label": "XRA1201 Driver",
+	"language": {
+		"en": {
+			"label": "XRA1201 Driver"
+		}
+	},
+	"name": "xra1201",
+	"author": "Anaren Inc.",
+	"signature": "",
+	"version": "1.0.0",
+	"description":"The XRA1201 is a 16-bit GPIO expander with an I2C/SMBus interface. After power-up, the XRA1201 has internal 100K ohm pull-up resistors on each I/O pin that can be individually enabled.\n\nIn addition, the GPIOs on the XRA1201 can individually be controlled and configured. As outputs, the GPIOs can be outputs that are high, low or in three-state mode. The three-state mode feature is useful for applications where the power is removed from the remote devices, but they may still be connected to the GPIO expander.\n\nAs inputs, the internal pull-up resistors can be enabled or disabled and the input polarity can be inverted. The interrupt can be programmed for different behaviors. The interrupts can be programmed to generate an interrupt on the rising edge, falling edge or on both edges. The interrupt can be cleared if the input changes back to its original state or by reading the current state of the inputs.\n\nThe XRA1201 are enhanced versions of other 16-bit GPIO expanders with an I2C/SMBus interface. The XRA1201 is pin and software compatible with the PCA9535, TCA9535 and MAX7312.\n\nThe XRA1201 are available in 24-pin QFN and 24-pin TSSOP packages.",
+	
+	"code": {
+		"global" : "",
+		"setup" : "" 
+	},
+	
+	"elements": {
+	},
+	
+	"categories":["GPIO"]
+}
