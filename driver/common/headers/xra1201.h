@@ -28,15 +28,16 @@
 #ifndef XRA1201_H
 #define XRA1201_H
 
-#include "types.h"
 #include "../i2c/i2c.h"
+#include <stddef.h>
+#include <stdint.h>
 
 //------------------------------------------------------------------------------
 /**
  *  Defines, enumerations, and structure definitions
  */
 #ifndef bool
-#define bool uint8
+#define bool uint8_t
 #endif
 
 #ifndef true
@@ -57,7 +58,7 @@ write to one of the read-only registers may result in undesirable behavior.
 @param addr device register address
 @param data data to be written to the specified register address
 */
-void XRA1201_WriteReg(uint8 id, uint8 addr, uint16 data);
+void XRA1201_WriteReg(uint8_t id, uint8_t addr, uint16_t data);
 
 /**
 Read a 16-bit value from a device register.
@@ -65,7 +66,7 @@ Read a 16-bit value from a device register.
 @param addr device register address
 @return data read from the specified register address
 */
-uint16 XRA1201_ReadReg(uint8 id, uint8 addr);
+uint16_t XRA1201_ReadReg(uint8_t id, uint8_t addr);
 
 /**
 Read the current state of the GPIO pins. The value will be inverted for input
@@ -75,14 +76,14 @@ returned.  Calling this function clears the XRA1201 interrupt.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the GSR register
 */
-uint16 XRA1201_GetGpioState(uint8 id);
+uint16_t XRA1201_GetGpioState(uint8_t id);
 
 /**
 Change the state of the GPIO output pins by writing to the OCR register.
 @param id device ID (0 to 31) on i2c bus
 @param data specifies the new state of the GPIO output pins
 */
-void XRA1201_SetOutputValue(uint8 id, uint16 data);
+void XRA1201_SetOutputValue(uint8_t id, uint16_t data);
 
 /**
 Read the last value written by the XRA1201_SetOutputValue() function.  The
@@ -90,7 +91,7 @@ default value following power-up is 0xFFFF.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the OCR register
 */
-uint16 XRA1201_GetOutputValue(uint8 id);
+uint16_t XRA1201_GetOutputValue(uint8_t id);
 
 /**
 Enable/disable polarity inversion on GPIO input pins.  Setting a bit to '1'
@@ -99,7 +100,7 @@ register.
 @param id device ID (0 to 31) on i2c bus
 @param data specifies which GPIO input pins to invert
 */
-void XRA1201_SetInputPolarityInversion(uint8 id, uint16 data);
+void XRA1201_SetInputPolarityInversion(uint8_t id, uint16_t data);
 
 /**
 Read the last value written by the XRA1201_SetInputPolarityInversion() function.
@@ -107,7 +108,7 @@ The default value following power-up is 0x0000.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the PIR register
 */
-uint16 XRA1201_GetInputPolarityInversion(uint8 id);
+uint16_t XRA1201_GetInputPolarityInversion(uint8_t id);
 
 /**
 Select GPIO pin direction.  Setting a bit to '0' configures the corresponding
@@ -116,7 +117,7 @@ input.
 @param id device ID (0 to 31) on i2c bus
 @param data GPIO pin direction
 */
-void XRA1201_SetPinDirection(uint8 id, uint16 data);
+void XRA1201_SetPinDirection(uint8_t id, uint16_t data);
 
 /**
 Read the last value written by the XRA1201_SetPinDirection() function. The
@@ -124,7 +125,7 @@ default value following power-up is 0xFFFF.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the GCR register
 */
-uint16 XRA1201_GetPinDirection(uint8 id);
+uint16_t XRA1201_GetPinDirection(uint8_t id);
 
 /**
 Enable/disable internal pull-up resistor on GPIO input pins.  Setting a bit to
@@ -132,7 +133,7 @@ Enable/disable internal pull-up resistor on GPIO input pins.  Setting a bit to
 @param id device ID (0 to 31) on i2c bus
 @param data specifies which GPIO input pins to pull-up internally
 */
-void XRA1201_SetInputPullupEnable(uint8 id, uint16 data);
+void XRA1201_SetInputPullupEnable(uint8_t id, uint16_t data);
 
 /**
 Read the last value written by the XRA1201_SetInputPullupEnable() function.  The
@@ -141,7 +142,7 @@ XRA1201P.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the PUR register
 */
-uint16 XRA1201_GetInputPullupEnable(uint8 id);
+uint16_t XRA1201_GetInputPullupEnable(uint8_t id);
 
 /**
 Enable/disable interrupts on GPIO input pins.  Setting a bit to '1' enables the
@@ -149,7 +150,7 @@ interrupt on the corresponding GPIO input pin.
 @param id device ID (0 to 31) on i2c bus
 @param data specifies which GPIO input pins to configure with interrupts enabled
 */
-void XRA1201_SetInterruptEnable(uint8 id, uint16 data);
+void XRA1201_SetInterruptEnable(uint8_t id, uint16_t data);
 
 /**
 Read the last value written by the XRA1201_SetInterruptEnable() function. The
@@ -157,7 +158,7 @@ default value following power-up is 0x0000.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the IER register
 */
-uint16 XRA1201_GetInterruptEnable(uint8 id);
+uint16_t XRA1201_GetInterruptEnable(uint8_t id);
 
 /**
 Enable/disable tri-state mode on GPIO output pins.  Setting a bit to '1' enables
@@ -165,7 +166,7 @@ the tri-state mode on the corresponding GPIO output pin.
 @param id device ID (0 to 31) on i2c bus
 @param data specifies which GPIO output pins to configure for tri-state mode
 */
-void XRA1201_SetOutputThreeStateEnable(uint8 id, uint16 data);
+void XRA1201_SetOutputThreeStateEnable(uint8_t id, uint16_t data);
 
 /**
 Read the last value written by the XRA1201_SetOutputThreeStateEnable() function.
@@ -173,7 +174,7 @@ The default value following power-up is 0x0000.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the TSCR register
 */
-uint16 XRA1201_GetOutputThreeStateEnable(uint8 id);
+uint16_t XRA1201_GetOutputThreeStateEnable(uint8_t id);
 
 /**
 Read the current status of the GPIO input pin interrupts.  A bit will be set to
@@ -182,7 +183,7 @@ value following power-up is 0x0000.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the ISR register
 */
-uint16 XRA1201_GetInterruptStatus(uint8 id);
+uint16_t XRA1201_GetInterruptStatus(uint8_t id);
 
 /**
 Enable/disable interrupts to be generated following the rising edge detection of
@@ -193,7 +194,7 @@ datasheet for more details regarding the interrupt behavior.
 @param data specifies which GPIO input pins are to generate interrupts on the
 rising edge
 */
-void XRA1201_SetInterruptRisingEdgeEnable(uint8 id, uint16 data);
+void XRA1201_SetInterruptRisingEdgeEnable(uint8_t id, uint16_t data);
 
 /**
 Read the last value written by the XRA1201_SetInterruptRisingEdgeEnable()
@@ -201,7 +202,7 @@ function. The default value following power-up is 0x0000.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the REIR register
 */
-uint16 XRA1201_GetInterruptRisingEdgeEnable(uint8 id);
+uint16_t XRA1201_GetInterruptRisingEdgeEnable(uint8_t id);
 
 /**
 Enable/disable interrupts to be generated following the falling edge detection
@@ -212,7 +213,7 @@ XRA1201 datasheet for more details regarding the interrupt behavior.
 @param data specifies which GPIO input pins are to generate interrupts on the
 falling edge
 */
-void XRA1201_SetInterruptFallingEdgeEnable(uint8 id, uint16 data);
+void XRA1201_SetInterruptFallingEdgeEnable(uint8_t id, uint16_t data);
 
 /**
 Read the last value written by the XRA1201_SetInterruptFallingEdgeEnable()
@@ -220,7 +221,7 @@ function. The default value following power-up is 0x0000.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the FEIR register
 */
-uint16 XRA1201_GetInterruptFallingEdgeEnable(uint8 id);
+uint16_t XRA1201_GetInterruptFallingEdgeEnable(uint8_t id);
 
 /**
 Enable/disable filtering on the GPIO input pins for generating interrupts.
@@ -230,7 +231,7 @@ behavior.
 @param id device ID (0 to 31) on i2c bus
 @param data specifies which GPIO input pins to configure with interrupt filters
 */
-void XRA1201_SetInterruptFilterEnable(uint8 id, uint16 data);
+void XRA1201_SetInterruptFilterEnable(uint8_t id, uint16_t data);
 
 /**
 Read the last value written by the XRA1201_SetInterruptFilterEnable() function.
@@ -238,7 +239,7 @@ The default value following power-up is 0xFFFF.
 @param id device ID (0 to 31) on i2c bus
 @return current value in the IFR register
 */
-uint16 XRA1201_GetInterruptFilterEnable(uint8 id);
+uint16_t XRA1201_GetInterruptFilterEnable(uint8_t id);
 
 
 #endif  /* XRA1201_H */

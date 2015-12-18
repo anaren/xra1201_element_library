@@ -81,163 +81,163 @@
  *  Public interface
  */
 
-void XRA1201_WriteReg(uint8 id, uint8 addr, uint16 data)
+void XRA1201_WriteReg(uint8_t id, uint8_t addr, uint16_t data)
 {
-  uint8 writeBytes[2];
+  uint8_t writeBytes[2];
 
   writeBytes[0] = addr;
   writeBytes[1] = data;
   AIR_I2C_Write(XRA1201_SLAVE_BASE_ADDR + id, writeBytes, 2);
 }
 
-uint16 XRA1201_ReadReg(uint8 id, uint8 addr)
+uint16_t XRA1201_ReadReg(uint8_t id, uint8_t addr)
 {
-  uint8 writeBytes[1];
-  uint8 readBytes[1];
+  uint8_t writeBytes[1];
+  uint8_t readBytes[1];
 
   writeBytes[0] = addr;
   AIR_I2C_ComboRead(XRA1201_SLAVE_BASE_ADDR + id, writeBytes, 1, readBytes, 1);
   return readBytes[0];
 }
 
-uint16 XRA1201_GetGpioState(uint8 id)
+uint16_t XRA1201_GetGpioState(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_GSR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_GSR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_GSR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_GSR2_REG_ADDR) << 8;
   return returnValue;
 }
 
-void XRA1201_SetOutputValue(uint8 id, uint16 data)
+void XRA1201_SetOutputValue(uint8_t id, uint16_t data)
 {
   XRA1201_WriteReg(id, XRA1201_OCR1_REG_ADDR, (data >> 0) & 0xFF);
   XRA1201_WriteReg(id, XRA1201_OCR2_REG_ADDR, (data >> 8) & 0xFF);
 }
 
-uint16 XRA1201_GetOutputValue(uint8 id)
+uint16_t XRA1201_GetOutputValue(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_OCR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_OCR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_OCR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_OCR2_REG_ADDR) << 8;
   return returnValue;
 }
 
-void XRA1201_SetInputPolarityInversion(uint8 id, uint16 data)
+void XRA1201_SetInputPolarityInversion(uint8_t id, uint16_t data)
 {
   XRA1201_WriteReg(id, XRA1201_PIR1_REG_ADDR, (data >> 0) & 0xFF);
   XRA1201_WriteReg(id, XRA1201_PIR2_REG_ADDR, (data >> 8) & 0xFF);
 }
 
-uint16 XRA1201_GetInputPolarityInversion(uint8 id)
+uint16_t XRA1201_GetInputPolarityInversion(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_PIR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_PIR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_PIR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_PIR2_REG_ADDR) << 8;
   return returnValue;
 }
 
-void XRA1201_SetPinDirection(uint8 id, uint16 data)
+void XRA1201_SetPinDirection(uint8_t id, uint16_t data)
 {
   XRA1201_WriteReg(id, XRA1201_GCR1_REG_ADDR, (data >> 0) & 0xFF);
   XRA1201_WriteReg(id, XRA1201_GCR2_REG_ADDR, (data >> 8) & 0xFF);
 }
 
-uint16 XRA1201_GetPinDirection(uint8 id)
+uint16_t XRA1201_GetPinDirection(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_GCR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_GCR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_GCR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_GCR2_REG_ADDR) << 8;
   return returnValue;
 }
 
-void XRA1201_SetInputPullupEnable(uint8 id, uint16 data)
+void XRA1201_SetInputPullupEnable(uint8_t id, uint16_t data)
 {
   XRA1201_WriteReg(id, XRA1201_PUR1_REG_ADDR, (data >> 0) & 0xFF);
   XRA1201_WriteReg(id, XRA1201_PUR2_REG_ADDR, (data >> 8) & 0xFF);
 }
 
-uint16 XRA1201_GetInputPullupEnable(uint8 id)
+uint16_t XRA1201_GetInputPullupEnable(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_PUR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_PUR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_PUR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_PUR2_REG_ADDR) << 8;
   return returnValue;
 }
 
-void XRA1201_SetInterruptEnable(uint8 id, uint16 data)
+void XRA1201_SetInterruptEnable(uint8_t id, uint16_t data)
 {
   XRA1201_WriteReg(id, XRA1201_IER1_REG_ADDR, (data >> 0) & 0xFF);
   XRA1201_WriteReg(id, XRA1201_IER2_REG_ADDR, (data >> 8) & 0xFF);
 }
 
-uint16 XRA1201_GetInterruptEnable(uint8 id)
+uint16_t XRA1201_GetInterruptEnable(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_IER1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_IER1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_IER2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_IER2_REG_ADDR) << 8;
   return returnValue;
 }
 
-void XRA1201_SetOutputThreeStateEnable(uint8 id, uint16 data)
+void XRA1201_SetOutputThreeStateEnable(uint8_t id, uint16_t data)
 {
   XRA1201_WriteReg(id, XRA1201_TSCR1_REG_ADDR, (data >> 0) & 0xFF);
   XRA1201_WriteReg(id, XRA1201_TSCR2_REG_ADDR, (data >> 8) & 0xFF);
 }
 
-uint16 XRA1201_GetOutputThreeStateEnable(uint8 id)
+uint16_t XRA1201_GetOutputThreeStateEnable(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_TSCR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_TSCR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_TSCR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_TSCR2_REG_ADDR) << 8;
   return returnValue;
 }
 
-uint16 XRA1201_GetInterruptStatus(uint8 id)
+uint16_t XRA1201_GetInterruptStatus(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_ISR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_ISR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_ISR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_ISR2_REG_ADDR) << 8;
   return returnValue;
 }
 
-void XRA1201_SetInterruptRisingEdgeEnable(uint8 id, uint16 data)
+void XRA1201_SetInterruptRisingEdgeEnable(uint8_t id, uint16_t data)
 {
   XRA1201_WriteReg(id, XRA1201_REIR1_REG_ADDR, (data >> 0) & 0xFF);
   XRA1201_WriteReg(id, XRA1201_REIR2_REG_ADDR, (data >> 8) & 0xFF);
 }
 
-uint16 XRA1201_GetInterruptRisingEdgeEnable(uint8 id)
+uint16_t XRA1201_GetInterruptRisingEdgeEnable(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_REIR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_REIR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_REIR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_REIR2_REG_ADDR) << 8;
   return returnValue;
 }
 
-void XRA1201_SetInterruptFallingEdgeEnable(uint8 id, uint16 data)
+void XRA1201_SetInterruptFallingEdgeEnable(uint8_t id, uint16_t data)
 {
   XRA1201_WriteReg(id, XRA1201_FEIR1_REG_ADDR, (data >> 0) & 0xFF);
   XRA1201_WriteReg(id, XRA1201_FEIR2_REG_ADDR, (data >> 8) & 0xFF);
 }
 
-uint16 XRA1201_GetInterruptFallingEdgeEnable(uint8 id)
+uint16_t XRA1201_GetInterruptFallingEdgeEnable(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_FEIR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_FEIR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_FEIR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_FEIR2_REG_ADDR) << 8;
   return returnValue;
 }
 
-void XRA1201_SetInterruptFilterEnable(uint8 id, uint16 data)
+void XRA1201_SetInterruptFilterEnable(uint8_t id, uint16_t data)
 {
   XRA1201_WriteReg(id, XRA1201_IFR1_REG_ADDR, (data >> 0) & 0xFF);
   XRA1201_WriteReg(id, XRA1201_IFR2_REG_ADDR, (data >> 8) & 0xFF);
 }
 
-uint16 XRA1201_GetInterruptFilterEnable(uint8 id)
+uint16_t XRA1201_GetInterruptFilterEnable(uint8_t id)
 {
-  uint16 returnValue = XRA1201_ReadReg(id, XRA1201_IFR1_REG_ADDR);
+  uint16_t returnValue = XRA1201_ReadReg(id, XRA1201_IFR1_REG_ADDR);
   
-  returnValue |= (uint16)XRA1201_ReadReg(id, XRA1201_IFR2_REG_ADDR) << 8;
+  returnValue |= (uint16_t)XRA1201_ReadReg(id, XRA1201_IFR2_REG_ADDR) << 8;
   return returnValue;
 }
