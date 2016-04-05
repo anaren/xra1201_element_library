@@ -20,5 +20,9 @@
 	"elements": {
 	},
 	
-	"categories":["GPIO"]
+	"categories":["GPIO"],
+	
+	"links":{
+		"Wiki Page":"https://atmosphere.anaren.com/wiki/XRA1201_Driver"
+	}
 }

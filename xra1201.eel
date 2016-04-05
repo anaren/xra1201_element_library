@@ -28,6 +28,9 @@
             "label": "XRA1201 Driver"
         }
     },
+    "links": {
+        "Wiki Page": "https://atmosphere.anaren.com/wiki/XRA1201_Driver"
+    },
     "name": "xra1201",
     "signature": "",
     "type": "Embedded Library",
